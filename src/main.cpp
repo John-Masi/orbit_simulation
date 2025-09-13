@@ -10,18 +10,6 @@
 #include <map>
 #include <iomanip>
 
-// Our queue to run said physics operations
-// TODO MAKE THIS A CLASS
-class Operation{
-	public:
-		Operation(){
-
-		}
-		~Operation() = default;
-	private:
-
-};
-
 namespace operation_queue{
 	using sample_size = int;
 	std::queue<int> q;
