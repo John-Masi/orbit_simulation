@@ -12,8 +12,10 @@ struct OrbitData{
 	double t_step;
 };
 
+static std::string file_path = "../orbit.csv";
+
 void addData(const OrbitData& od) {
-	std::ofstream file("orbit.csv", std::ios::app);
+	std::ofstream file(file_path, std::ios::app);
 
 	static bool header{false};
 
@@ -30,7 +32,7 @@ void addData(const OrbitData& od) {
 }
 
 int ClearData() {
-	std::ofstream file("orbit.csv",std::ios::out | std::ios::trunc);
+	std::ofstream file(file_path,std::ios::out | std::ios::trunc);
 
 	if (file.is_open()){
 		return 1;
