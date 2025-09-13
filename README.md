@@ -1,8 +1,22 @@
 # orbit_simulation
-Simulating different orbits using numerical integration(RK4) in c++ and drawing the orbits in python with matplot lib and numpy 
-
-Also later will implement a better integrating system(RKF45) as right now i lose accuracy after 10-12 time steps, and will
-add a option to have img of the earth on the 3d meshgrid or not as the img of the earth makes the plotting really slow.
-
-to run use cmake to build and run the build then poetry run python main.py to get the orbit visualization 
-
+A C++ project for simulating orbital motion using numerical integration methods. The simulator models a satellite in Earth orbit and outputs trajectory data for analysis and visualization.
+--------------------------------------------------------------------
+Features:
+Runge-Kutta 4 integrator for orbital motion ,
+Outputs position and velocity for every timestep ,
+Loggs the position and velocity ,
+3D Visualization using the logged data in python , 
+---------------------------------------------------------------------
+Get started:
+clone the repo,
+cd orbit_simulation ,
+mkdir build,
+cd build,
+cmake .. , 
+cmake --build . ,
+./orbit_simulation
+----------------------------------------------------------------------
+Draw the orbit:
+poetry run python main.py
+----------------------------------------------------------------------
+<img width="800" height="660" alt="Figure_1" src="https://github.com/user-attachments/assets/e9181369-7197-4d06-b3ae-09393b6cecc6" />
