@@ -8,8 +8,8 @@ matplotlib.use("Qt5Agg")
 import numpy as np
 import pandas as pd
 
-path = "../orbit.csv"
-earth_img = "../earth.jpg"
+path = "orbit.csv"
+earth_img = "earth.jpg"
 img = image.imread(earth_img)
 earth = resize(img, (64,128))
 file = pd.read_csv(path)

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "orbit_simulation"
+name = "orbit-simulation"
 version = "0.1.0"
 description = ""
 authors = ["John-Masi <johnrmasi@gmail.com>"]
@@ -7,9 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-numpy = "^2.3.3"
 matplotlib = "^3.10.6"
+numpy = "^2.3.3"
 pandas = "^2.3.2"
+scikit-image = "^0.25.2"
+pyqt5 = "^5.15.11"
 
 
 [build-system]
