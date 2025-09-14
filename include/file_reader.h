@@ -2,17 +2,21 @@
 #include <iostream>
 #include <string>
 #include "orbital_mechanics.h"
+#include "telemetry.h"
 
 #ifndef file_reader
 #define file_reader
 
-struct OrbitData{
-	VectorRV v;
-	VectorRV r;
-	double t_step;
-};
-
 static std::string file_path = "../orbit.csv";
+static std::string telemetry_path = "../orbit.bin";
+
+
+// Converts 
+void addTelemetry(const OrbitData& od) {
+	std::ofstream file(telemetry_path, std::ios::binary | std::ios::app);
+	file.write(reinterpret_cast<const char *>(&od),sizeof(od));
+
+}
 
 void addData(const OrbitData& od) {
 	std::ofstream file(file_path, std::ios::app);
@@ -24,8 +28,8 @@ void addData(const OrbitData& od) {
 		header = true;
 	}
 
-	file << od.t_step << ", " << od.v.v[0] << ", " << od.v.v[1] << ", "
-	<< od.v.v[2] << ", " << od.r.v[0] << ", " << od.r.v[1] << ", " << od.r.v[2] << "\n";
+	file << od.t_step << ", " << od.rx << ", " << od.ry << ", "
+	<< od.rz << ", " << od.vx << ", " << od.vy << ", " << od.vz << "\n";
 
 	file.close();
 

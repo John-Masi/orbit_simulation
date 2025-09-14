@@ -1,64 +1,11 @@
-#include <thread>
-#include <condition_variable>
-#include <mutex>
-#include <queue>
 #include <utility>
-#include <chrono>
 #include "orbital_mechanics.h"
 #include "file_reader.h"
 #include "constants.h"
+#include "telemetry.h"
 #include <map>
 #include <iomanip>
 
-namespace operation_queue{
-	using sample_size = int;
-	std::queue<int> q;
-	std::condition_variable cv;
-	std::mutex mtx;
-	sample_size s = 5;
-	int stop = -1;
-	// NOTE: Stop will be different for each operation
-
-	int pop_p() {
-		std::unique_lock<std::mutex> l(mtx);
-		// Thread is blocked while we wait to check if the queue is empty 
-		cv.wait(l,[&]{ return !q.empty(); });
-		int v = std::move(q.front());
-		q.pop();
-		return v;
-	}
-
-	void push(int v) {
-		{
-			q.push(v);
-		}
-		// Block thread
-		cv.notify_one();
-	}
-
-	void consumer() {
-		while(true) {
-			int h = pop_p();
-			if(h == stop){
-				break;
-			}
-			// Run simulation of what ever physicis calulation we do
-			// h.run(sample_size)
-		}
-	}
-
-	void producer() {
-		for(int i = 0; i < 5; i++) {
-			int v = i;
-			q.push(v);
-		}
-
-		// Implement different stops for different physics types
-		q.push(stop);
-	}
-};
-
-// Clean this up for queue
 void orbitSimulation(OrbitalParameters op) {
 
 	SatelliteOrbit so(5.972e24,op);
@@ -76,15 +23,17 @@ void orbitSimulation(OrbitalParameters op) {
 		update_r = so.getFinal_r();
 		update_v = so.getFinal_v();
 
-		OrbitData od = {so.getFinal_r(), so.getFinal_v(),static_cast<double>(i)};
+		OrbitData od = {so.getFinal_v().v[0],so.getFinal_v().v[1],so.getFinal_v().v[2],
+					so.getFinal_r().v[0],so.getFinal_r().v[1],so.getFinal_r().v[2],static_cast<double>(i)};
 		addData(od);
+		//addTelemetry(od);
 	}
 }
 
 int main() {
 	std::map<OrbitalParameters, int> o_map;
 
-	std::thread main_t(orbitSimulation, orbits::loe);
+	std::thread main_t(orbitSimulation, orbits::molniya);
 	main_t.join();
 
 	return 0;
