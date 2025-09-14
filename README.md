@@ -18,6 +18,7 @@ cd build,
 cmake .. , 
 cmake --build . ,
 ./orbit_simulation
+and will now have data for a loe orbit(low earth orbit) !
 
 ----------------------------------------------------------------------
 # Draw the orbit:
