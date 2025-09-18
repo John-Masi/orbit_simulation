@@ -1,12 +1,6 @@
-#include <thread>
-#include <condition_variable>
-#include <queue>
-#include <mutex>
 #include <cassert>
-#include <chrono>
 #include <math.h>
 #include <iostream>
-#include <array>
 #include <limits>
 
 #ifndef orbital_mechanics
