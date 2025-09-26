@@ -27,10 +27,6 @@ ax.set_xlabel("X (rx)")
 ax.set_ylabel("Y (ry)")
 ax.set_zlabel("Z (rz)")
 
-#x = np.concatenate([earth_x.ravel(),file[headers[1]].iloc[0]])
-#y = np.concatenate([earth_y.ravel(),file[headers[2]].iloc[0]])
-#z = np.concatenate([earth_z.ravel(),file[headers[3]].iloc[0]])
-
 ax.set_xlim(14000)
 ax.set_zlim(14000)
 ax.set_ylim(14000)
@@ -52,8 +48,6 @@ def single_animate(frame):
 	return point,
 
 def full_animate(frame):
-	#line.set_data(file[headers[1]].iloc[:frame],file[headers[2]].iloc[:frame])
-	#line.set_3d_properties(file[headers[3]].iloc[:frame])
 
 	point.set_data(file[headers[1]].iloc[:frame],file[headers[2]].iloc[:frame])
 	point.set_3d_properties(file[headers[3]].iloc[:frame])
