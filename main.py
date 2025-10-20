@@ -20,7 +20,7 @@ rows = len(file)
 fig = plt.figure(figsize=(8,8))
 ax = fig.add_subplot(111,projection='3d')
 ax.set_proj_type('ortho')
-ax.view_init(elev=10, azim=50)
+ax.view_init(elev=10)
 ax.set_box_aspect([1,1,1])
 
 ax.set_xlabel("X (rx)")
