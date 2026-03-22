@@ -1,0 +1,3 @@
+/home/johnmasi/orbit_simulation/build/CMakeFiles/orbit_simulation.dir
+/home/johnmasi/orbit_simulation/build/CMakeFiles/edit_cache.dir
+/home/johnmasi/orbit_simulation/build/CMakeFiles/rebuild_cache.dir

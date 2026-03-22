@@ -1,12 +1,11 @@
 #include <utility>
-#include "orbital_mechanics.h"
-#include "file_reader.h"
-#include "constants.h"
-#include "telemetry.h"
+#include "../include/orbital_mechanics.h"
+#include "../include/file_reader.h"
+#include "../include/telemetry.h"
 #include <map>
 #include <iomanip>
 
-void orbitSimulation(OrbitalParameters op) {
+void orbitSimulation(const OrbitalParameters& op) {
 
 	SatelliteOrbit so(5.972e24,op);
 
@@ -31,10 +30,8 @@ void orbitSimulation(OrbitalParameters op) {
 }
 
 int main() {
-	std::map<OrbitalParameters, int> o_map;
 
-	std::thread main_t(orbitSimulation, orbits::molniya);
-	main_t.join();
+	orbitSimulation(orbits::molniya);
 
 	return 0;
 }

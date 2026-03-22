@@ -1,14 +1,13 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include "orbital_mechanics.h"
 #include "telemetry.h"
 
 #ifndef file_reader
 #define file_reader
 
-static std::string file_path = "../orbit.csv";
-static std::string telemetry_path = "../orbit.bin";
+const std::string file_path = "../orbit.csv";
+const std::string telemetry_path = "../orbit.bin";
 
 
 // Converts 
@@ -21,7 +20,7 @@ void addTelemetry(const OrbitData& od) {
 void addData(const OrbitData& od) {
 	std::ofstream file(file_path, std::ios::app);
 
-	static bool header{false};
+	bool header{false};
 
 	if(!header) {
 		file << "t, rx, ry, rz, vx, vy, vz\n";

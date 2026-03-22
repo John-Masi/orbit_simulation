@@ -2,37 +2,18 @@
 #include <math.h>
 #include <iostream>
 #include <limits>
+#include "constants.h"
 
 #ifndef orbital_mechanics
 #define orbital_mechanics
-
-static const double G = 6.6743e-20;
-
-struct Planet{
-	double mass_;	
-	double u;
-
-	Planet(double m) : mass_(m){
-		u = G * mass_; 
-	}
-};
-
-struct OrbitalParameters{
-	double major_axis;
-	double eccentrity;
-	double inc;
-	double omega;
-	double perapsis;
-	double v_anomaly;
-	double dt;
-
-	int period = static_cast<int>(((2* M_PI) * std::sqrt((major_axis * major_axis * major_axis) / 398600.4418)) / dt);
-};
 
 // Our rotation matrices to compute for our real r and v 
 class Matrice {
 	public:
 		double m[3][3] {};
+
+    Matrice() = default;
+    ~Matrice() = default;
 
 		static Matrice rotation_I(double inclination) {
 			double new_inc = inclination * (M_PI/180);
@@ -124,6 +105,9 @@ class Matrice {
 class VectorRV {
 	public:
 		double v[3];
+    
+    VectorRV() = default;
+    ~VectorRV() = default;
 
 		void m_update(double j) {
 			for(int i = 0; i < 3; i++){
@@ -132,7 +116,7 @@ class VectorRV {
 		}
 
 		double magnitude() {
-			double m;
+			double m{};
 			for(int i = 0; i < 3; i++){
 				m += v[i] * v[i];
 			}
@@ -163,7 +147,6 @@ class VectorRV {
 			return result;
 		}
 
-		// TODO: Add operator+ for reduce reduncy 
 		// Adding 1x1 vectors to each other
 		VectorRV add_1x1(VectorRV rv){
 			VectorRV result;
@@ -191,7 +174,6 @@ class VectorRV {
 			}
 		}
 
-	private:
 };
 
 class SatelliteOrbit{
