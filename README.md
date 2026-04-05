@@ -22,6 +22,8 @@ and will now have data for a loe orbit(low earth orbit) !
 
 ----------------------------------------------------------------------
 # Draw the orbit:
+poetry env use python3
+poetry install
 poetry run python main.py
 
 ----------------------------------------------------------------------
